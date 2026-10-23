@@ -87,20 +87,32 @@ python -m history_bot ingest --rebuild
 
 ## How it works
 
-```text
-Exact catalogue PDF
-  → PyMuPDF native text blocks and page metadata
-  → canonical repeated footers + overlapping LangChain chunks
-  → configured Gemini or Ollama document embeddings
-  → persistent ChromaDB
+```mermaid
+flowchart TD
+    subgraph Ingestion["1. Document Ingestion Pipeline"]
+        PDF["Catalogue PDF<br/>(History_2024-25.pdf)"] --> Extract["PyMuPDF Extraction<br/>(Text Blocks & Page Metadata)"]
+        Extract --> Clean["Repeated Footers De-duplication<br/>(Preserve unique citations)"]
+        Clean --> Chunk["RecursiveCharacterTextSplitter<br/>(1,200 chars / 180 overlap)"]
+        Chunk --> EmbedDocs["Document Embedder<br/>(Gemini gemini-embedding-001 / Ollama)"]
+        EmbedDocs --> Chroma[("ChromaDB Vector Store<br/>(Persistent Local Vectors)")]
+    end
 
-Question
-  → compatible query embedding
-  → six retrieved catalogue passages
-  → LangChain prompt + structured Gemini or Ollama output
-  → exact quotation and chunk validation
-  → separate evidence-support check
-  → answer with backend-owned references, or exactly Not found
+    subgraph QueryFlow["2. Query & Retrieval Pipeline"]
+        UserQ(["User Question"]) --> EmbedQ["Query Embedder<br/>(Task: RETRIEVAL_QUERY)"]
+        EmbedQ --> SimSearch["Vector Similarity Search<br/>(Retrieve Top-k = 6 Passages)"]
+        Chroma -.-> SimSearch
+        SimSearch --> Prompt["LangChain ChatPromptTemplate<br/>(System Grounding + Passages + Question)"]
+        Prompt --> LLM["LLM Generation<br/>(Gemini 3.5 Flash-Lite / Ollama)"]
+    end
+
+    subgraph Guardrails["3. Two-Stage Grounding & Verification"]
+        LLM --> Draft["Structured Draft Response<br/>(Answer + Chunk IDs + Exact Quotes)"]
+        Draft --> ValQuote{"Stage 1: Verbatim Check<br/>Are quotes found word-for-word in chunks?"}
+        ValQuote -- No / Hallucinated Quote --> Reject(["Return: 'Not found'"])
+        ValQuote -- Yes --> CheckSupport{"Stage 2: Strict Evidence Check<br/>Does excerpt factually answer the question?"}
+        CheckSupport -- Unsupported / Out-of-Domain --> Reject
+        CheckSupport -- Factually Supported --> VerifiedAnswer(["Verified Answer + Verified Page Citations<br/>(e.g., '1948', PDF Page 2)"])
+    end
 ```
 
 1. **Extraction:** PyMuPDF preserves native PDF text-block order, with whitespace normalized within each block. Representative front matter and multi-column listings were inspected. This is not a general column-detection algorithm. Short text, publisher information, and unique pricing notices are retained.
