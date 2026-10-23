@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-10-23T10:27:25.307417+00:00",
+  "chat_provider": "gemini",
+  "chat_model": "gemini-3.5-flash-lite",
+  "embedding_provider": "gemini",
+  "embedding_model": "gemini-embedding-001",
+  "api_key_present": true,
+  "live_checks": {
+    "embedding": {
+      "pass": true,
+      "result": 768
+    },
+    "structured_chat": {
+      "pass": true,
+      "result": true
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+data/source/*.pdf
+data/index/
+data/extracted/
+tmp/
+*.log
+node_modules/
+submission/
+

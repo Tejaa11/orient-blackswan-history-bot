@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/erwin_smith/Documents/ChatGPT/Rag - Mid term
+plugins: langsmith-0.14.12, anyio-4.15.1
+collected 96 items
+
+tests/test_diagnostics.py ..................                             [ 18%]
+tests/test_guardrails.py ..................                              [ 37%]
+tests/test_ingestion.py .......                                          [ 44%]
+tests/test_provider_retries.py ..............                            [ 59%]
+tests/test_providers.py ................................                 [ 92%]
+tests/test_ui.py .......                                                 [100%]
+
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 96 passed, 5 warnings in 1.76s ========================

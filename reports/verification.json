@@ -1,0 +1,44 @@
+{
+  "verified_at_utc": "2026-10-23T10:14:02.390385+00:00",
+  "python": "3.12.14",
+  "packages": {
+    "langchain": "1.4.7",
+    "langchain-core": "1.7.0",
+    "langchain-text-splitters": "1.1.3",
+    "langchain-chroma": "1.1.0",
+    "langchain-ollama": "1.1.0",
+    "chromadb": "1.5.9",
+    "ollama": "0.6.3",
+    "PyMuPDF": "1.28.2",
+    "streamlit": "1.66.1",
+    "pydantic": "2.14.1",
+    "python-dotenv": "1.2.4",
+    "pytest": "9.1.1"
+  },
+  "tests": {
+    "command": "python -m pytest -q",
+    "exit_code": 0,
+    "passed": 96,
+    "report": "reports/tests.txt"
+  },
+  "dependency_check": {
+    "command": "python -m pip check",
+    "exit_code": 0,
+    "output": "No broken requirements found."
+  },
+  "real_evaluation": {
+    "passed": 14,
+    "total": 14
+  },
+  "restart": true,
+  "publication": "awaiting user repository/visibility choice",
+  "browser": {
+    "assessment_screenshots_passed": 5,
+    "empty_input": true,
+    "reset": true,
+    "mobile_horizontal_overflow": false,
+    "page_errors": [],
+    "report": "reports/ui_browser.json"
+  },
+  "screenshots_visually_reviewed": true
+}

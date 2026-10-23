@@ -1,0 +1,20 @@
+{
+  "started_at_utc": "2026-10-23T10:10:58.247774+00:00",
+  "old_streamlit_pid": 8800,
+  "manifest_sha256_before": "fa9ee53b35d3eaecef18c761da7bb463273b84b28c9656fe5682043308bf797b",
+  "chunk_count_before": 567,
+  "procedure": "Terminate Streamlit process, start a new process, reopen persistent Chroma, and submit real questions through browser.",
+  "new_streamlit_pid": 9354,
+  "manifest_sha256_after": "fa9ee53b35d3eaecef18c761da7bb463273b84b28c9656fe5682043308bf797b",
+  "chunk_count_after": 567,
+  "ready_after_restart": true,
+  "actual_post_restart_questions": [
+    "On what date were the prices in this catalogue last updated?",
+    "In which year was the publisher, Orient BlackSwan, incorporated?"
+  ],
+  "supported_answers_after_restart": true,
+  "no_ingestion_on_restart": true,
+  "pass": true,
+  "completed_at_utc": "2026-10-23T10:13:03.805089+00:00",
+  "metadata_note": "After the successful unchanged-manifest restart checkpoint, text_page_count was corrected from89 to90 by measuring the original PDF. One contents image has only a repeated footer stored canonically. Source, collection, embeddings, chunk count, and signature are unchanged."
+}

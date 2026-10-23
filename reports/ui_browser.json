@@ -1,0 +1,53 @@
+{
+  "captured_at_utc": "2026-10-23T10:15:48.762Z",
+  "method": "Actual Chrome UI submissions; no injected answers",
+  "cases": [
+    {
+      "id": "q3",
+      "question": "What is the price of a Physics textbook?",
+      "screenshot": "docs/screenshots/q3.png",
+      "rendered_ui_text": "ORIENT BLACKSWAN / HISTORY COLLECTION\nOrient BlackSwan History Bot\n\nReset session\n\nExplore the history catalogue with answers you can trace to the original PDF pages.\n●   Catalogue ready   ·   History_2024-25.pdf   ·   91 PDF pages\n\nAsk the catalogue\n\nFind an answer →\n\nAnswers are limited to this PDF. Every supported answer includes source passages.\n\nA FEW PLACES TO BEGIN\n\nWhen were the catalogue prices last updated?\n\nWhen was Orient BlackSwan incorporated?\n\nWho is the current Minister of Education?\n\nThe last example checks how the bot handles a question beyond its catalogue.\n\nFrom the catalogue\n\nYour question\n\nWhat is the price of a Physics textbook?\n\nNot found\n\nThe catalogue does not provide enough evidence to answer this question.\n\nAnswered in 34.6s · Based only on the supplied PDF catalogue\n\nA focused reading companion for the Orient BlackSwan history catalogue. Prices and publication details reflect the supplied catalogue; check its date before relying on them.",
+      "pass": true
+    },
+    {
+      "id": "q4",
+      "question": "Who is the current Minister of Education?",
+      "screenshot": "docs/screenshots/q4.png",
+      "rendered_ui_text": "ORIENT BLACKSWAN / HISTORY COLLECTION\nOrient BlackSwan History Bot\n\nReset session\n\nExplore the history catalogue with answers you can trace to the original PDF pages.\n●   Catalogue ready   ·   History_2024-25.pdf   ·   91 PDF pages\n\nAsk the catalogue\n\nFind an answer →\n\nAnswers are limited to this PDF. Every supported answer includes source passages.\n\nA FEW PLACES TO BEGIN\n\nWhen were the catalogue prices last updated?\n\nWhen was Orient BlackSwan incorporated?\n\nWho is the current Minister of Education?\n\nThe last example checks how the bot handles a question beyond its catalogue.\n\nFrom the catalogue\n\nYour question\n\nWho is the current Minister of Education?\n\nNot found\n\nThe catalogue does not provide enough evidence to answer this question.\n\nAnswered in 6.7s · Based only on the supplied PDF catalogue\n\nA focused reading companion for the Orient BlackSwan history catalogue. Prices and publication details reflect the supplied catalogue; check its date before relying on them.",
+      "pass": true
+    },
+    {
+      "id": "q5",
+      "question": "Which is the “best” history book for a beginner?",
+      "screenshot": "docs/screenshots/q5.png",
+      "rendered_ui_text": "ORIENT BLACKSWAN / HISTORY COLLECTION\nOrient BlackSwan History Bot\n\nReset session\n\nExplore the history catalogue with answers you can trace to the original PDF pages.\n●   Catalogue ready   ·   History_2024-25.pdf   ·   91 PDF pages\n\nAsk the catalogue\n\nFind an answer →\n\nAnswers are limited to this PDF. Every supported answer includes source passages.\n\nA FEW PLACES TO BEGIN\n\nWhen were the catalogue prices last updated?\n\nWhen was Orient BlackSwan incorporated?\n\nWho is the current Minister of Education?\n\nThe last example checks how the bot handles a question beyond its catalogue.\n\nFrom the catalogue\n\nYour question\n\nWhich is the “best” history book for a beginner?\n\nNot found\n\nThe catalogue does not provide enough evidence to answer this question.\n\nAnswered in 28.6s · Based only on the supplied PDF catalogue\n\nA focused reading companion for the Orient BlackSwan history catalogue. Prices and publication details reflect the supplied catalogue; check its date before relying on them.",
+      "pass": true
+    },
+    {
+      "id": "q1",
+      "question": "On what date were the prices in this catalogue last updated?",
+      "screenshot": "docs/screenshots/q1.png",
+      "rendered_ui_text": "ORIENT BLACKSWAN / HISTORY COLLECTION\nOrient BlackSwan History Bot\n\nReset session\n\nExplore the history catalogue with answers you can trace to the original PDF pages.\n●   Catalogue ready   ·   History_2024-25.pdf   ·   91 PDF pages\n\nAsk the catalogue\n\nFind an answer →\n\nAnswers are limited to this PDF. Every supported answer includes source passages.\n\nA FEW PLACES TO BEGIN\n\nWhen were the catalogue prices last updated?\n\nWhen was Orient BlackSwan incorporated?\n\nWho is the current Minister of Education?\n\nThe last example checks how the bot handles a question beyond its catalogue.\n\nFrom the catalogue\n\nYour question\n\nOn what date were the prices in this catalogue last updated?\n\nThe prices in this catalogue were last updated on 20-01-2025.\n\nSOURCE REFERENCES\n\nHistory_2024-25.pdf · PDF page 2\n\nkeyboard_arrow_down\n\nRead the exact supporting passages (1)\n\nPassage 1 · PDF page 2\n\nHistory_2024-25.pdf · 1af230e1c768-p002-c001\n\nPrices updated on 20-01-2025. These prices are subject to change without notice.\n\nAnswered in 9.0s · Based only on the supplied PDF catalogue\n\nA focused reading companion for the Orient BlackSwan history catalogue. Prices and publication details reflect the supplied catalogue; check its date before relying on them.",
+      "pass": true
+    },
+    {
+      "id": "q2",
+      "question": "In which year was the publisher, Orient BlackSwan, incorporated?",
+      "screenshot": "docs/screenshots/q2.png",
+      "rendered_ui_text": "ORIENT BLACKSWAN / HISTORY COLLECTION\nOrient BlackSwan History Bot\n\nReset session\n\nExplore the history catalogue with answers you can trace to the original PDF pages.\n●   Catalogue ready   ·   History_2024-25.pdf   ·   91 PDF pages\n\nAsk the catalogue\n\nFind an answer →\n\nAnswers are limited to this PDF. Every supported answer includes source passages.\n\nA FEW PLACES TO BEGIN\n\nWhen were the catalogue prices last updated?\n\nWhen was Orient BlackSwan incorporated?\n\nWho is the current Minister of Education?\n\nThe last example checks how the bot handles a question beyond its catalogue.\n\nFrom the catalogue\n\nYour question\n\nIn which year was the publisher, Orient BlackSwan, incorporated?\n\nOrient BlackSwan was incorporated in 1948.\n\nSOURCE REFERENCES\n\nHistory_2024-25.pdf · PDF page 2\n\nkeyboard_arrow_down\n\nRead the exact supporting passages (1)\n\nPassage 1 · PDF page 2\n\nHistory_2024-25.pdf · 1af230e1c768-p002-c000\n\nOrient BlackSwan is one of India’s best known and most respected publishing houses. Incorporated in 1948, the consistent emphasis of our publishing programme has been on quality.\n\nAnswered in 8.4s · Based only on the supplied PDF catalogue\n\nA focused reading companion for the Orient BlackSwan history catalogue. Prices and publication details reflect the supplied catalogue; check its date before relying on them.",
+      "pass": true
+    }
+  ],
+  "mobile": {
+    "width": 390,
+    "screenshot": "docs/screenshots/06-mobile.png",
+    "horizontal_overflow": false
+  },
+  "reset": {
+    "pass": true
+  },
+  "empty_input": {
+    "pass": true
+  },
+  "browser_errors": []
+}
