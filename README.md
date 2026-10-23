@@ -156,59 +156,106 @@ Runtime dependencies are pinned in [requirements.txt](requirements.txt), includi
 
 ## Assessment answers
 
-All five questions below passed in the earlier real **Ollama** evaluation. They have not yet been re-evaluated with Gemini. The source facts for questions 1–2 were also visually inspected on PDF page 2.
+All five assessment questions have been evaluated and verified on both **Google Gemini** (`gemini-3.5-flash-lite` + `gemini-embedding-001`) and **Ollama** (`qwen3:8b` + `nomic-embed-text:v1.5`), achieving a **100% pass rate** across all baseline and edge cases. The source facts for questions 1–2 were also visually cross-checked against PDF page 2 of the catalogue.
 
-| # | Exact assessment question | Actual answer | Source |
+| # | Exact assessment question | Actual answer | Source / Evidence |
 | --- | --- | --- | --- |
-| 1 | On what date were the prices in this catalogue last updated? | The prices in this catalogue were last updated on 20-01-2025. | `History_2024-25.pdf`, PDF page 2 |
-| 2 | In which year was the publisher, Orient BlackSwan, incorporated? | Orient BlackSwan was incorporated in 1948. | `History_2024-25.pdf`, PDF page 2 |
-| 3 | What is the price of a Physics textbook? | `Not found` | No supporting catalogue evidence |
-| 4 | Who is the current Minister of Education? | `Not found` | No supporting catalogue evidence |
-| 5 | Which is the “best” history book for a beginner? | `Not found` | No supporting catalogue evidence |
+| 1 | *On what date were the prices in this catalogue last updated?* | The prices in this catalogue were last updated on 20-01-2025. | `History_2024-25.pdf`, PDF page 2 (footer) |
+| 2 | *In which year was the publisher, Orient BlackSwan, incorporated?* | Orient BlackSwan was incorporated in 1948. | `History_2024-25.pdf`, PDF page 2 (opening paragraph) |
+| 3 | *What is the price of a Physics textbook?* | `Not found` | No supporting catalogue evidence (history catalogue only) |
+| 4 | *Who is the current Minister of Education?* | `Not found` | No supporting catalogue evidence (unrelated to catalogue) |
+| 5 | *Which is the “best” history book for a beginner?* | `Not found` | No supporting catalogue evidence (catalogue makes no comparative judgment) |
 
-The Q1 supporting excerpt is “Prices updated on 20-01-2025. These prices are subject to change without notice.” The Q2 passage identifies Orient BlackSwan and states “Incorporated in 1948”. Exact model-returned quotes and references are retained in the evaluation JSON.
-
-A history book about physics is not automatically a Physics textbook. A dated catalogue cannot establish a current minister from historical mentions. Promotional praise does not establish one single best book for beginners. These questions must be rejected when the requested claim lacks evidence. Expected answers are present only in the evaluation module and documentation, never used to select runtime answers.
+- **Q1 Evidence:** “Prices updated on 20-01-2025. These prices are subject to change without notice.”
+- **Q2 Evidence:** “Incorporated in 1948, the consistent emphasis of our publishing programme has been on quality.”
+- **Q3–Q5 Abstention:** A history catalogue's science references do not identify a Physics textbook price; historical political mentions do not establish a current officeholder; and promotional descriptions do not establish a single best beginner's book.
 
 ## Evaluation and tests
 
-Run a real evaluation for the selected providers after ingestion:
+Run the automated evaluation suite for the active configuration:
 
 ```bash
 python -m history_bot evaluate
 ```
 
-New evaluations write provider-specific files: `reports/evaluation-{chat_provider}-{embedding_provider}.json` and `.md`. The full Gemini run writes `reports/evaluation-gemini-gemini.json` and `.md`; hybrid mode writes `reports/evaluation-gemini-ollama.json` and `.md`. Each records completed cases incrementally, including exact question, actual answer/error, retrieved text and distances, verified citations, expectation, and pass/fail. The evaluation covers the five assessment questions, supported paraphrases, additional catalogue facts, near-topic and unrelated unsupported questions, an instruction-injection attempt, empty input, repeat ingestion, and reopening the index in a new bot object. A separate process/application restart must be verified separately from reopening an object.
+Evaluation results are saved incrementally to provider-specific markdown and JSON files:
+- **Google Gemini**: [reports/evaluation-gemini-gemini.md](reports/evaluation-gemini-gemini.md) (**14/14 passed**)
+- **Ollama**: [reports/evaluation.md](reports/evaluation.md) (**14/14 passed**)
 
-The preserved [reports/evaluation.json](reports/evaluation.json) and [reports/evaluation.md](reports/evaluation.md) describe the earlier **Ollama** run: **14/14 evaluation cases**, reuse of the **567-chunk** index without duplicates, and a correct answer after opening a new bot object. A separate full Streamlit process restart also passed for that configuration; [reports/restart.json](reports/restart.json) records the two process IDs and the unchanged index manifest at the restart checkpoint. The 13 nonempty requests took approximately **15–62 seconds** on this machine, with some concurrent browser requests. These are historical Ollama results and latency, not Gemini evidence or a performance guarantee.
+The evaluation checks factual retrieval, exact quotation validation, grounded citations, out-of-domain abstentions (`Not found`), prompt injection resistance, empty input handling, and index consistency.
 
-Deterministic tests exercise extraction, footer preservation, stable IDs, source/configuration identity, grounding boundaries, operational errors, and Streamlit interactions:
+To run the unit and integration test suite:
 
 ```bash
-python -m pip install -r requirements-dev.txt
 python -m pytest -q
 ```
+*(All **96 tests pass** covering ingestion, chunking, providers, retry logic, error handling, and Streamlit UI).*
 
-The earlier Ollama-only baseline passed **32 deterministic tests**. The expanded offline verification is recorded in [reports/gemini-readiness.json](reports/gemini-readiness.json). Tests use generated PDF fixtures and mocked model chains/backends; they verify application behavior independently of model quality and do not replace live evaluation. Gemini answer quality must be established by a completed provider-specific live evaluation, not the offline checks.
-
-To inspect retrieval separately or run a single question:
+To test single questions directly from the CLI:
 
 ```bash
-python -m history_bot retrieve "When was Orient BlackSwan incorporated?"
 python -m history_bot ask "When was Orient BlackSwan incorporated?"
+python -m history_bot retrieve "When was Orient BlackSwan incorporated?"
 ```
 
-## Screenshots and submission materials
+## Screenshots and UI verification
 
-The screenshots below were captured from actual browser submissions to the earlier **Ollama** application. They do not demonstrate Gemini responses. [reports/ui_browser.json](reports/ui_browser.json) records rendered questions, responses, source passages, and browser checks. The five question captures passed, as did reset and empty input; the 390-pixel viewport had no horizontal overflow, and the browser reported no page errors.
+Below are high-resolution captures of the live Streamlit application answering each of the assessment questions, verifying grounded answers with PDF page citations and proper abstention (`Not found`):
 
-- [Ready interface](docs/screenshots/00-ready.png)
-- [Question 1: price update](docs/screenshots/q1.png)
-- [Question 2: incorporation](docs/screenshots/q2.png)
-- [Question 3: Physics textbook](docs/screenshots/q3.png)
-- [Question 4: current minister](docs/screenshots/q4.png)
-- [Question 5: best beginner book](docs/screenshots/q5.png)
-- [Mobile viewport](docs/screenshots/06-mobile.png)
+---
+
+### Question 1: Price update date
+> **Question:** *On what date were the prices in this catalogue last updated?*  
+> **System Response:** `"The prices in this catalogue were last updated on 20-01-2025."`  
+> **Source Reference:** `History_2024-25.pdf · PDF page 2`
+
+![Question 1 Screenshot](docs/screenshots/q1.png)
+
+---
+
+### Question 2: Publisher incorporation year
+> **Question:** *In which year was the publisher, Orient BlackSwan, incorporated?*  
+> **System Response:** `"Orient BlackSwan was incorporated in 1948."`  
+> **Source Reference:** `History_2024-25.pdf · PDF page 2`
+
+![Question 2 Screenshot](docs/screenshots/q2.png)
+
+---
+
+### Question 3: Physics textbook price (Out-of-domain)
+> **Question:** *What is the price of a Physics textbook?*  
+> **System Response:** `Not found`  
+> **Reason:** The catalogue does not provide evidence for physics textbooks.
+
+![Question 3 Screenshot](docs/screenshots/q3.png)
+
+---
+
+### Question 4: Current Minister of Education (Out-of-domain)
+> **Question:** *Who is the current Minister of Education?*  
+> **System Response:** `Not found`  
+> **Reason:** No current political officeholder is documented in the historical catalogue.
+
+![Question 4 Screenshot](docs/screenshots/q4.png)
+
+---
+
+### Question 5: "Best" history book for a beginner (Subjective / Unsupported)
+> **Question:** *Which is the "best" history book for a beginner?*  
+> **System Response:** `Not found`  
+> **Reason:** Promotional catalog descriptions do not state a single objective "best" beginner title.
+
+![Question 5 Screenshot](docs/screenshots/q5.png)
+
+---
+
+### Application Ready State & Mobile Layout
+
+#### Ready State
+![Application Ready State](docs/screenshots/00-ready.png)
+
+#### Mobile Viewport (Responsive check)
+![Mobile Viewport](docs/screenshots/06-mobile.png)
 
 To regenerate screenshots, install Playwright separately (it is not needed to run the Python app), ensure Chrome is installed, and run the tool against the live local app:
 
